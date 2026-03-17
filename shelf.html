@@ -70,10 +70,42 @@
 
             </div>
 
-            <!-- Recently watched — populated by JS -->
+            <!-- Favorite films -->
             <div class="films-section">
-                <p class="board-label">recently watched</p>
-                <div class="films-row" id="recentFilms"></div>
+                <p class="board-label">favorite films</p>
+                <div class="films-row">
+
+                    <div class="pin-card polaroid-card" style="--rot: -1.8deg; --mt: 0px">
+                        <div class="polaroid-placeholder">
+                            <span class="polaroid-placeholder-text">
+                                <img src="assets/images/bookshelf/bladerunner2049.jpg" alt="Blade Runner 2049" class="polaroid-placeholder">
+                            </span>
+                        </div>
+                        <p class="polaroid-caption">Blade Runner 2049</p>
+                    </div>
+
+                    <div class="pin-card polaroid-card" style="--rot: 2.1deg; --mt: 15px">
+                        <div class="polaroid-placeholder">
+                            <span class="polaroid-placeholder-text">poster</span>
+                        </div>
+                        <p class="polaroid-caption">Film title</p>
+                    </div>
+
+                    <div class="pin-card polaroid-card" style="--rot: -2.5deg; --mt: 5px">
+                        <div class="polaroid-placeholder">
+                            <span class="polaroid-placeholder-text">poster</span>
+                        </div>
+                        <p class="polaroid-caption">Film title</p>
+                    </div>
+
+                    <div class="pin-card polaroid-card" style="--rot: 1.4deg; --mt: 20px">
+                        <div class="polaroid-placeholder">
+                            <span class="polaroid-placeholder-text">poster</span>
+                        </div>
+                        <p class="polaroid-caption">Film title</p>
+                    </div>
+
+                </div>
             </div>
         </section>
 
@@ -109,54 +141,6 @@
             }
 
             updateToggleLabel();
-
-            // ── Letterboxd recents ────────────────────────────────────
-            const ROTS = [-2.1, 1.5, -1.3, 2.4];
-            const MTS  = [10, 30, 5, 20];
-
-            async function loadRecentFilms() {
-                const rssUrl = encodeURIComponent('https://letterboxd.com/jkell_/rss/');
-                const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}&count=4`;
-
-                try {
-                    const res  = await fetch(apiUrl);
-                    const data = await res.json();
-                    if (data.status !== 'ok' || !data.items.length) return;
-
-                    const container = document.getElementById('recentFilms');
-
-                    data.items.forEach((item, i) => {
-                        // Title format: "Film Name, 2024 - ★★★½" or "Film Name, 2024"
-                        const parts     = item.title.split(' - ');
-                        const titleYear = parts[0].trim();
-                        const rating    = parts[1] ? parts[1].trim() : '';
-                        // Strip trailing year ", 2024"
-                        const filmTitle = titleYear.replace(/,?\s*\d{4}$/, '').trim();
-
-                        const rot = ROTS[i % ROTS.length];
-                        const mt  = MTS[i % MTS.length];
-
-                        const card = document.createElement('a');
-                        card.href             = item.link;
-                        card.target           = '_blank';
-                        card.rel              = 'noopener noreferrer';
-                        card.className        = 'pin-card polaroid-card';
-                        card.style.cssText    = `--rot: ${rot}deg; --mt: ${mt}px`;
-
-                        card.innerHTML = `
-                            <img src="${item.thumbnail}" alt="${filmTitle}" class="film-poster">
-                            <p class="polaroid-caption">${filmTitle}</p>
-                            ${rating ? `<p class="film-rating">${rating}</p>` : ''}
-                        `;
-
-                        container.appendChild(card);
-                    });
-                } catch (e) {
-                    // Silently fail — board still works without this section
-                }
-            }
-
-            loadRecentFilms();
         </script>
     </body>
 </html>
