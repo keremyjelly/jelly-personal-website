@@ -581,7 +581,7 @@ h2 {
 
 .ticket-main {
     flex: 1;
-    padding: 0.75em 0.9em 0.75em 2em;
+    padding: 0.75em 1.5em 1.25em 2em;
     border-right: 2px dashed #c9aa88;
     display: flex;
     flex-direction: column;
