@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Writing by Jeremy Kelly.">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/assets/style.css">
+        <title>Jeremy Kelly — Writing</title>
+        <script>
+            (function () {
+                const saved = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+            })();
+        </script>
+    </head>
+    <body>
+        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">dark</button>
+
+        <div class="container">
+            <main class="centered-content">
+                <h1>Writing</h1>
+                <div class="nav">
+                    <a class="btn" href="/">Home</a>
+                    <a class="btn" href="/writing.html">Writing</a>
+                    <a class="btn" href="/shelf.html">Bookshelf</a>
+                </div>
+
+                <div class="blog-list">
+                    <article class="blog-list-item">
+                        <time>March 2026</time>
+                        <a href="#">Origin</a>
+                    </article>
+                </div>
+            </main>
+        </div>
+
+        <footer class="colophon">
+            <div class="colophon-name">Connect</div>
+            <nav class="colophon-links">
+                <a href="https://www.linkedin.com/in/jeremy-kelly-074359347">LinkedIn</a>
+                <span>·</span>
+                <a href="https://github.com/keremyjelly">GitHub</a>
+                <span>·</span>
+                <a href="mailto:jskelly2024@gmail.com">Email</a>
+                <span>·</span>
+                <a href="https://www.instagram.com/keremyjelly/">Instagram</a>
+                <span>·</span>
+                <a href="https://letterboxd.com/jkell_/">Letterboxd</a>
+                <span>·</span>
+                <a href="https://www.goodreads.com">Goodreads</a>
+            </nav>
+        </footer>
+
+        <script>
+            function toggleTheme() {
+                const current = document.documentElement.getAttribute('data-theme');
+                const next = current === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', next);
+                localStorage.setItem('theme', next);
+                updateToggleLabel();
+            }
+
+            function updateToggleLabel() {
+                const current = document.documentElement.getAttribute('data-theme');
+                document.getElementById('themeToggle').textContent = current === 'dark' ? 'light' : 'dark';
+            }
+
+            updateToggleLabel();
+        </script>
+    </body>
+</html>

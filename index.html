@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Personal website of Jeremy Kelly.">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/assets/style.css">
+        <title>Jeremy Kelly</title>
+        <!-- Set theme before CSS renders to prevent flash of wrong theme -->
+        <script>
+            (function () {
+                const saved = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+            })();
+        </script>
+    </head>
+    <body>
+        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">dark</button>
+
+        <div class="container">
+            <main class="centered-content">
+                <img src="/assets/images/jelly-beach-smile.JPG" alt="Jeremy looking great and smiling on the beach" class="profile-pic">
+                <h1>Jeremy Kelly</h1>
+                <div class="nav">
+                    <a class="btn" href="/">Home</a>
+                    <a class="btn" href="/writing.html">Writing</a>
+                    <a class="btn" href="/shelf.html">Bookshelf</a>
+                </div>
+
+                <!-- Quote widget: sits like an inscription at the top of the journal page -->
+                <div class="quote-widget" id="quoteWidget" onclick="advanceQuote()">
+                    <blockquote class="quote-text" id="quoteText"></blockquote>
+                    <cite class="quote-author" id="quoteAuthor"></cite>
+                    <div class="quote-hint">click to advance</div>
+                </div>
+
+                <h2>About</h2>
+                <div class="body-text-container">
+                    <p class="body-text">
+                        Hello! I'm Jeremy, a sophomore at the University of Notre Dame studying Computer Science.
+                        I'm also on the Men's Swim Team specializing in sprint freestyle and IM, and I'm a resident of Carroll Hall (AAMW).
+                    </p>
+                    <br>
+                    <p class="body-text">
+                        I grew up in Georgetown, Texas with two older brothers and three dogs.
+                        I started swimming when I was four years old, and it's been a central part of my life ever since.
+                        I attended Georgetown High School and swam for Nitro Swimming.
+                    </p>
+                    <br>
+                    <p class="body-text">
+                        I initially attended the University of Texas at Austin.
+                        During my first year at UT, I studied aerospace engineering while competing on the swim team.
+                        Our team won both the SEC Championship and the NCAA National Championship that season.
+                        Later, changes in the NCAA landscape led me to transfer to Notre Dame, where I shifted my academic focus to computer science.
+                        Best decision ever.
+                    </p>
+                    <br>
+                    <p class="body-text">
+                        I'm very interested in machine learning, and I want to get under the hood to understand the mechanics, math, and systems behind the magic.
+                        Teaching and mentoring are also passions of mine. I love learning and building things, and I want to help other people do the same.
+                        In my opinion, seeing someone succeed because of guidance or support you gave them is one of the most fulfilling experiences.
+                    </p>
+                    <br>
+                    <p class="body-text">
+                        In terms of work experience, I am a cofounder of the nonprofit organization Ten at a Time, which I remained involved with for over ten years.
+                        I also worked as a cave tour guide.
+                    </p>
+                    <br>
+                    <p class="body-text">
+                        Outside of school, I spend most of my time with friends and family, exploring nature, hiking, and traveling whenever I get the chance.
+                        I'm also a huge fan of all things movies, music, anime, and sci-fi / fantasy books.
+                        I also love good food (especially good bread), but who doesn't.
+                    </p>
+                </div>
+
+                <h2>Projects</h2>
+                <div class="project-list">
+                    <div class="project-item">
+                        <div class="project-header">
+                            <span class="project-title">Tetris</span>
+                            <span class="project-status status-complete">complete</span>
+                        </div>
+                        <p class="project-desc">A description of this project will go here.</p>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-header">
+                            <span class="project-title">Eli Lilly Micro Project</span>
+                            <span class="project-status status-complete">complete</span>
+                        </div>
+                        <p class="project-desc">A description of this project will go here.</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <footer class="colophon">
+            <div class="colophon-name">Connect</div>
+            <nav class="colophon-links">
+                <a href="https://www.linkedin.com/in/jeremy-kelly-074359347">LinkedIn</a>
+                <span>·</span>
+                <a href="https://github.com/keremyjelly">GitHub</a>
+                <span>·</span>
+                <a href="mailto:jskelly2024@gmail.com">Email</a>
+                <span>·</span>
+                <a href="https://www.instagram.com/keremyjelly/">Instagram</a>
+                <span>·</span>
+                <a href="https://letterboxd.com/jkell_/">Letterboxd</a>
+                <span>·</span>
+                <a href="https://www.goodreads.com">Goodreads</a>
+            </nav>
+        </footer>
+
+        <script>
+            // ── Theme toggle ──────────────────────────────────────────
+            function toggleTheme() {
+                const current = document.documentElement.getAttribute('data-theme');
+                const next = current === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', next);
+                localStorage.setItem('theme', next);
+                updateToggleLabel();
+            }
+
+            function updateToggleLabel() {
+                const current = document.documentElement.getAttribute('data-theme');
+                // Show the mode you'd switch TO, so the user knows what the button does
+                document.getElementById('themeToggle').textContent = current === 'dark' ? 'light' : 'dark';
+            }
+
+            updateToggleLabel();
+
+            // ── Quote cycler ──────────────────────────────────────────
+            const quotes = [
+                { text: "Don't measure how valuable you are by the way you are treated.", author: "— Charlie Mackesy" },
+                { text: "Do you see how infinite you are?", author: "— Takehiko Inoue" },
+                { text: "It does not matter how slowly you go as long as you do not stop.", author: "— Confucius" },
+                { text: "You miss 100% of the shots you don't take.", author: "— Wayne Gretzky" },
+                { text: "Whether you think you can or you think you can't, you're right.", author: "— Henry Ford" },
+            ];
+
+            let currentIndex = 0;
+            let autoTimer;
+
+            function showQuote(index) {
+                const textEl = document.getElementById("quoteText");
+                const authorEl = document.getElementById("quoteAuthor");
+                const widget = document.getElementById("quoteWidget");
+
+                widget.classList.add("fading");
+
+                setTimeout(() => {
+                    textEl.textContent = quotes[index].text;
+                    authorEl.textContent = quotes[index].author;
+                    widget.classList.remove("fading");
+                }, 400);
+            }
+
+            function advanceQuote() {
+                currentIndex = (currentIndex + 1) % quotes.length;
+                showQuote(currentIndex);
+                // Reset timer so a click doesn't get immediately overridden
+                resetTimer();
+            }
+
+            function resetTimer() {
+                clearInterval(autoTimer);
+                autoTimer = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % quotes.length;
+                    showQuote(currentIndex);
+                }, 6000);
+            }
+
+            showQuote(currentIndex);
+            resetTimer();
+        </script>
+    </body>
+</html>
