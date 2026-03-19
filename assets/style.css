@@ -484,13 +484,20 @@ h2 {
     display: flex;
     align-items: baseline;
     gap: 1.2em;
-    padding: 0.55em 0;
+    padding: 0.55em 0 0.55em 0.75em;
     border-bottom: 1px solid var(--rule);
+    border-left: 3px solid transparent;
 }
 
 .blog-list-item:first-child {
     border-top: 1px solid var(--rule);
 }
+
+.blog-list-item:nth-child(5n+1) { border-left-color: #c9a8b2; } /* dusty rose */
+.blog-list-item:nth-child(5n+2) { border-left-color: #a8b8a0; } /* sage green */
+.blog-list-item:nth-child(5n+3) { border-left-color: #a8b4c8; } /* muted blue */
+.blog-list-item:nth-child(5n+4) { border-left-color: #c4b0cc; } /* soft lavender */
+.blog-list-item:nth-child(5n+5) { border-left-color: #c8b89a; } /* warm sand */
 
 .blog-list-item time {
     font-family: 'EB Garamond', serif;
