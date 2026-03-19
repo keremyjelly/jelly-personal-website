@@ -11,8 +11,8 @@
         <script>
             (function () {
                 const saved = localStorage.getItem('theme');
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+                const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+                document.documentElement.setAttribute('data-theme', saved || (prefersLight ? 'light' : 'dark'));
             })();
         </script>
     </head>
@@ -21,12 +21,12 @@
 
         <div class="container">
             <main class="centered-content">
-                <img src="assets/images/jelly-beach-smile.JPG" alt="Jeremy looking great and smiling on the beach" class="profile-pic">
+                <img src="assets/images/jelly-beach-smile.JPG" alt="Jeremy on the beach" class="profile-pic">
                 <h1>Jeremy Kelly</h1>
                 <div class="nav">
                     <a class="btn" href="index.html">Home</a>
-                    <a class="btn" href="writing.html">Writing</a>
-                    <a class="btn" href="shelf.html">Bookshelf</a>
+                    <a class="btn" href="writing.html">Bookshelf</a>
+                    <a class="btn" href="shelf.html">Pinboard</a>
                 </div>
 
                 <!-- Quote widget: sits like an inscription at the top of the journal page -->
