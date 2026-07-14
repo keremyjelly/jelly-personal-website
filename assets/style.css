@@ -298,6 +298,22 @@ h2 {
     margin: 0;
 }
 
+.project-link {
+    display: inline-block;
+    font-family: 'EB Garamond', serif;
+    font-size: 0.92em;
+    font-style: italic;
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    margin-top: 0.5em;
+    transition: border-color 0.2s ease;
+}
+
+.project-link:hover {
+    border-bottom-color: var(--link);
+}
+
 /* ── Cork board ───────────────────────────────────────────── */
 .corkboard {
     width: 100%;
@@ -480,6 +496,19 @@ h2 {
     margin: 1.5em 0 2.5em;
 }
 
+.blog-list-empty {
+    width: 100%;
+    max-width: 620px;
+    margin: 1.5em 0 2.5em;
+    text-align: center;
+}
+
+.blog-list-empty .body-text {
+    text-indent: 0;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
 .blog-list-item {
     display: flex;
     align-items: baseline;
@@ -655,4 +684,87 @@ h2 {
     margin-bottom: 0.5em;
     color: var(--text);
     font-style: normal;
+}
+
+/* ── Responsive ───────────────────────────────────────────────
+   Everything above is written desktop-first (fixed widths,
+   large gaps), so these breakpoints override downward instead
+   of building up. Two stops: 768px catches tablets (iPad
+   portrait is exactly 768px), 480px catches phones. */
+
+/* Tablet and below */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.75em 1em 2em;
+    }
+
+    h1 {
+        font-size: 2.3em;
+    }
+
+    img.profile-pic {
+        width: 260px;
+    }
+
+    /* The desktop gap (7rem 6rem) was sized for a wide corkboard;
+       at tablet width it leaves huge dead space between cards. */
+    .corkboard {
+        padding: 2.5rem 1rem 3rem;
+    }
+
+    .board-grid {
+        gap: 4rem 2.5rem;
+    }
+}
+
+/* Phone */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.9em;
+    }
+
+    img.profile-pic {
+        width: 190px;
+        padding: 8px 8px 28px;
+    }
+
+    .quote-text {
+        font-size: 1.2em;
+    }
+
+    .nav {
+        gap: 1.1em;
+    }
+
+    .corkboard {
+        padding: 2rem 0.75rem 2.5rem;
+    }
+
+    .board-grid {
+        gap: 2.5rem 1.5rem;
+    }
+
+    .films-row {
+        gap: 1.5rem 1rem;
+    }
+
+    /* Title + status share a row via space-between; a long title
+       ("Brain Tumor MRI Classifier") next to "complete" no longer
+       fits one line at phone width, so let it wrap. */
+    .project-header {
+        flex-wrap: wrap;
+    }
+
+    /* Date + link sit side by side by default; stack them so the
+       date doesn't force the link into a narrow leftover column. */
+    .blog-list-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2em;
+    }
+
+    .colophon-links {
+        gap: 0.3em 0.5em;
+        font-size: 0.85em;
+    }
 }
